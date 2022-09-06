@@ -89,18 +89,17 @@ function number(arr1, arr2){
 //step 12
 
 function willBuyDrink(isHotOutside, moneyInPocket){
-    if(isHotOutside == true && moneyInPocket > 10.50){
+    if(isHotOutside && moneyInPocket > 10.50){
         return true;
-    } else{
-        return false;
-    }
-}console.log(willBuyDrink(true, 9.00));
+    } return false;
+}
+console.log(willBuyDrink(false, 17.00));
 
 //step 13 - This function changes the first letter of each word into an uppercase.
 
 function upperCase(str){
     let array = str.split(' ');
-    var newArray = [];
+    let newArray = [];
     for(var x = 0; x < array.length; x++){
         newArray.push(array[x].charAt(0).toUpperCase()+array[x].slice(1));
     } return newArray.join(' ');
