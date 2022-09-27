@@ -1,0 +1,215 @@
+#background {
+    background-color:rgb(230, 55, 55);
+}
+
+.column {
+    float: left;
+    width: 19.90%;
+    padding: 100px;
+}
+  
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#centertext {
+    text-align: center;
+}
+
+#img-box {
+    padding: 20px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color:rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+#title-box {
+    font-size: 75px;
+    text-align: center;
+    padding: 50px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    color:rgb(244, 248, 0);
+}
+
+#inside-box {
+    padding: 20px;
+    border-style: inset;
+    border-width: 7px;
+    margin: auto;
+    margin-top: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(230, 55, 55);
+    border-radius: 20px;
+    font-size: x-large;
+    width: 600px;
+}
+
+#text-color {
+    font-size: 100px;
+    color: rgb(244, 248, 0);
+}
+
+#review-box1 {
+    color:rgb(244, 248, 0);
+    text-align: center;
+    font-size: 25px;
+}
+
+#review-box2 {
+    color: blue;
+}
+
+#movie-info {
+    font-size: 28px;
+    text-align: center;
+    padding: 50px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    color:rgb(244, 248, 0);
+}
+
+#background1 {
+    background-color:rgb(146, 119, 31);
+}
+
+#title-box1 {
+    font-size: 75px;
+    text-align: center;
+    padding: 50px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    color:rgb(13, 104, 110);
+}
+
+#img-box {
+    padding: 20px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color:rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+#text-color1 {
+    font-size: 100px;
+    color: rgb(13, 104, 110);
+}
+
+#inside-box1 {
+    padding: 20px;
+    border-style: inset;
+    border-width: 7px;
+    margin: auto;
+    margin-top: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(146, 119, 31);
+    border-radius: 20px;
+    font-size: x-large;
+    width: 600px;
+}
+
+#movie-info1 {
+    font-size: 28px;
+    text-align: center;
+    padding: 50px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    color:rgb(13, 104, 110);
+}
+
+#text-color2 {
+    font-size: 50px;
+    color: rgb(13, 104, 110);
+    text-align: center;
+}
+
+#text-color3 {
+    font-size: 50px;
+    color: rgb(244, 248, 0);
+    text-align: center;
+}
+
+#inside-box-submit {
+    padding: 5px;
+    border-style: inset;
+    border-width: 7px;
+    margin: auto;
+    margin-top: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    border-radius: 20px;
+    font-size: x-large;
+    width: 600px;
+    text-align: center;
+}
+
+#background2 {
+    background-color:rgb(221, 116, 55);
+}
+
+#title-box2 {
+    font-size: 75px;
+    text-align: center;
+    padding: 50px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    color:rgb(253, 253, 253);
+}
+
+#inside-box2 {
+    padding: 20px;
+    border-style: inset;
+    border-width: 7px;
+    margin: auto;
+    margin-top: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(221, 116, 55);
+    border-radius: 20px;
+    font-size: x-large;
+    width: 600px;
+}
+
+#text-color5 {
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+#movie-info2 {
+    font-size: 28px;
+    text-align: center;
+    padding: 50px;
+    border-style: inset;
+    border-width: 7px;
+    margin: 30px;
+    border-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    color:rgb(255, 255, 255);
+}
