@@ -1,0 +1,32 @@
+#background {
+    background-color: rgb(177, 213, 202);
+}
+
+#title-font {
+    font-family:'Papyrus', monospace;
+}
+
+.column {
+    float: left;
+    width: 19.90%;
+    padding: 100px;
+}
+  
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#title-text {
+    text-align: center;
+    padding: 100px;
+    font-size: 75px;
+    font-family: 'Papyrus', monospace;
+    
+}
+
+#padding {
+    padding-bottom: 50px;
+}
+
