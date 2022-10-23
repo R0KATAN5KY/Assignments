@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Houses</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey League</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-  </head>
-  <body class="container">
-    <div id="new-house" class="jumbotron">
-      <h2>New House</h2>
-      <input type="text" id="new-house-name" class="form-control"><br>
-      <button id="create-new-house" class="btn btn-primary form-control">Create</button>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="container">
+    <div id="new-team" class="new-team-box">
+        <h2 id="fun-text">Create A Hockey Team!</h2>
+        <input type="text" id="new-team-name" class="form-control" placeholder="New Team"> <br>
+        <button id="create-new-team" class="btn btn-primary form-control">Create Team</button>
     </div>
 
     <div id="app">
-
+        
     </div>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    
+    <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="index.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-  </body>
+</body>
 </html>

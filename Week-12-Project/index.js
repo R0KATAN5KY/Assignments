@@ -1,147 +1,161 @@
-class House {
-    constructor(name) {
-        this.name = name;
-        this.rooms = [];
+class Team {                                             
+    constructor(name) {                                
+      this.name = name;
+      this.players = [];                                 
     }
-
-    addRoom(name, area) {
-        this.rooms.push(new Room(name, area));
+  
+    addPlayer(name, position) {                         
+      this.players.push(new Player(name, position));     
     }
-}
-
-class Room {
-    constructor(name, area) {
-        this.name = name;
-        this.area = area;
+  }
+  
+  class Player {                                          
+    constructor(name, position,) {                        
+      this.name = name;                                   
+      this.position = position;                            
     }
-}
-
-class HouseService {
-    static url = 'https://ancient-taiga-31359.herokuapp.com/api/houses';
-
-    static getAllHouses() {
-        return $.get(this.url);
+  }
+  
+  class TeamService {                                                       
+    static url = "https://63548f02e64783fa82866050.mockapi.io/api/Teams";  
+  
+    static getAllTeams() {                                                  
+      return $.get(this.url);
     }
-
-    static getHouse(id) {
-        return $.get(this.url + `/${id}`);
+  
+    static getTeam(id) {                                                     
+      return $.get(this.url + `/${id}`);
     }
-
-    static createHouse(house) {
-        return $.post(this.url, house);
+  
+    static createTeam(team) {                                                 
+      console.log(team);
+      return $.post(this.url, team);                                          
     }
-
-    static updateHouse(house) {
-        return $.ajax({
-            url: this.url + `/${house._id}`,
-            dataType: 'json',
-            data: JSON.stringify(house),
-            contentType: 'application/json',
-            type: 'PUT'
-        });
+  
+    static updateTeam(team) {                                                  
+      console.log("updateteam:", team);                                        
+      return $.ajax({
+        url: this.url + `/${team._id}`,
+        dataType: "json",
+        data: JSON.stringify(team),
+        contentType: "application/json",
+        type: "PUT",
+      });
     }
-
-    static deleteHouse(id) {
-        return $.ajax({
-            url: this.url + `/${id}`,
-            type: 'DELETE'
-        });
+  
+    static deleteTeam(id) {                                                     
+      return $.ajax({                                                           
+        url: this.url + `/${id}`,
+        type: "Delete",
+      });
     }
-}
-
-class DOMManager {
-    static houses;
-
-    static getAllHouses() {
-        HouseService.getAllHouses().then(houses => this.render(houses));
+  }
+  
+  class DOMManager {                                                             
+    static teams;                                                                 
+  
+    static getAllTeams() {                                                        
+      TeamService.getAllTeams().then((teams) => {                               
+        this.render(teams);                                              
+      });
     }
-
-    static createHouse(name) {
-        HouseService.createHouse(new House(name))
+  
+    static createTeam(name) {                                             
+      TeamService.createTeam(new Team(name))                              
+        .then(() => {
+          return TeamService.getAllTeams();                              
+        })
+        .then((teams) => this.render(teams));                             
+    }
+  
+    static deleteTeam(id) {                                               
+      console.log("deleteteam:",id);
+      TeamService.deleteTeam(id)                                           
+        .then(() => {
+          return TeamService.getAllTeams();
+        })
+        .then((teams) => this.render(teams));                          
+    }
+  
+    static addPlayer(id) {                                               
+      console.log("addplayer:", id);
+      for (let team of this.teams) {                                     
+        if (team._id == id) {                                            
+          team.players.push(                                              
+            new Player(
+              $(`#${team._id}-player-name`).val(),                         
+              $(`#${team._id}-player-position`).val()                   
+            )
+          );
+          TeamService.updateTeam(team)                                     
             .then(() => {
-                return HouseService.getAllHouses();
+              return TeamService.getAllTeams();                            
             })
-            .then((houses) => this.render(houses));
-    }
-
-    static deleteHouse(id) {
-        HouseService.deleteHouse(id)
-            .then(() => {
-                return HouseService.getAllHouses();
-            })
-            .then((houses) => this.render(houses));
-    }
-
-    static addRoom(id) {
-        for (let house of this.houses) {
-            if(house._id == id) {
-                house.rooms.push(new Room($(`#${house._id}-room-name`).val(), $(`#${house._id}-room-area`).val()));
-                HouseService.updateHouse(house)
-                    .then(() => {
-                        return HouseService.getAllHouses();
-                    })
-                    .then((houses) => this.render(houses));
-            }
+            .then((teams) => this.render(teams));                          
         }
+      }
     }
-
-    static deleteRoom(houseId, roomId) {
-        for (let house of this.houses) {
-            if (house._id == houseId) {
-                for (let room of house.rooms) {
-                    if (room._id == roomId) {
-                        house.rooms.splice(house.rooms.indexOf(room), 1);
-                        HouseService.updateHouse(house)
-                            .then(() => {
-                                return HouseService.getAllHouses();
-                            })
-                            .then(() => this.render(houses));
-                    }
-                }
+  
+    static deletePlayer(teamId, playerId) {                                
+      for (let team of this.teams) {                                       
+        if (team._id == teamId) {                                          
+          for (let player of team.players) {                              
+            if (player.name == playerId) {                                 
+              team.players.splice(team.players.indexOf(player.name), 1);   
+              TeamService.updateTeam(team)                                 
+                .then(() => {
+                  return TeamService.getAllTeams();                      
+                })
+                .then((teams) => this.render(teams));                  
             }
+          }
         }
+      }
     }
-
-    static render(houses) {
-        this.houses = houses;
-        $('#app').empty();
-        for (let house of houses) {
-            $('#app').prepend(
-                `<div id="${house._id}" class="card">
-                    <div class="card-header">
-                        <h2>${house.name}<h2>
-                        <button class ="btn btn-danger" onclick="DOMManager.deleteHouse('${house._id}')>Delete</button>
-                    </div>
-                    <div class="card-body">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <input type="text" id="${house._id}-room-name" class="form-control" placeholder="Room Name">
-                                </div>
-                                <div class="col-sm">
-                                    <input type="text" id="${house._id}-room-area" class="form-control" placeholder="Room Area">
-                                </div>
-                            </div>
-                            <button id="${house._id}-new-room" onclick+"DOMManager.addRoom('${house._id}') class="btn btn-primary form-control">Add</button>
-                        </div>
-                    </div>
-                </div><br>`
+  
+    static render(teams) {                                        
+      this.teams = teams;                                           
+      $("#app").empty();                                         
+      for (let team of teams) {                                    
+        $("#app").prepend(                                       
+          `<div id="${team._id}" class="card">                      
+                      <div class="card-header">
+                      <!-- Need to reference the team.name in your heading 2 tag. -->
+                          <h2>${team.name}<h2> 
+                          <button class="btn btn-danger" onClick="DOMManager.deleteTeam('${team._id}')">Delete Team</button>
+                      </div>
+                      <div class="card-body">
+                          <div class="card">
+                              <div class="row">
+                                  <div class="col-sm">
+                                      <input type="text" id="${team._id}-player-name" class="form-control" Placeholder="Player Name">
+                                  </div>
+                                  <div class="col-sm">
+                                      <input type="text" id="${team._id}-player-position" class="form-control" Placeholder="Player Position">
+                                  </div>
+                              </div>
+                              <button id="${team._id}-new-player" onClick="DOMManager.addPlayer('${team._id}')" class="btn btn-primary form-control">Add Player</button>
+                          </div>
+                      </div>
+                  </div><br>`
+        );
+        for (let player of team.players) {                            
+          $(`#${team._id}`)                                         
+            .find(`.card-body`)
+            .append(
+            `<p>
+                <span id="name-${player._id}"><strong>Name: </strong> ${player.name}</span>
+                <span id="position-${player._id}"><strong>Position: </strong> ${player.position}</span>
+                <button class="btn btn-danger" onClick="DOMManager.deletePlayer('${team._id}' , '${player.name}')">Delete Player</button>`
             );
-            for (let room of house.rooms) {
-                $(`#${house._id}`).find('.card-body').append(
-                    `<p>
-                        <span id="name-${room._id}"><strong>Name: </strong> ${room.name}</span>
-                        <span id="area-${room._id}"><strong>Area: </strong> ${room.name}</span>
-                        <button class="btn btn-danger" onclick="DOMManager.deleteRoom('${house._id}')`
-                );
-            }
         }
+      }
     }
-}
-
-$('#create-new-house').click(() => {
-    DOMManager.createHouse($('#new-house-name').val());
-    $('#new-house-name').val('');
-});
-
-DOMManager.getAllHouses();
+  }
+  
+  $("#create-new-team").click(() => {                
+    DOMManager.createTeam($("#new-team-name").val())
+    $("#new-team-name").val("");                     
+  });
+  
+  DOMManager.getAllTeams();                           
